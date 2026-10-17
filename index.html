@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="timer.js"></script>
   <script defer src="app.js"></script>
+<link rel="stylesheet" href="account.css"><script type="module" src="account.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">본문으로 바로가기</a>
-  <header class="topbar"><a class="brand" href="#/" aria-label="교실 도구함 홈"><span class="brand-mark">교</span>교실 도구함<span class="brand-dot">.</span></a><span class="top-note">선생님의 수업을 조금 더 가볍게</span><span class="local-badge"><i></i> 로그인 없이 바로 사용</span></header>
+  <header class="topbar"><a class="brand" href="#/" aria-label="교실 도구함 홈"><span class="brand-mark">교</span>교실 도구함<span class="brand-dot">.</span></a><span class="top-note">선생님의 수업을 조금 더 가볍게</span><span class="local-badge"><i></i> 도구는 바로 · 기록은 로그인</span></header>
   <main id="main" tabindex="-1">
     <section id="hub-view">
       <div class="hero"><span class="eyebrow">작은 도구, 더 좋은 수업</span><h1>오늘 수업에는<br class="mobile-break"> 어떤 도구가 필요하세요?</h1><p>수업에 필요한 도구를 한곳에 모았어요.</p><form id="search-form" class="search" role="search"><span class="search-symbol" aria-hidden="true">⌕</span><label class="sr-only" for="search">프로그램 검색</label><input id="search" type="search" placeholder="어떤 도구를 찾으세요?" autocomplete="off"><button id="search-clear" type="button" aria-label="검색어 지우기" hidden>×</button><button class="search-submit" aria-label="검색">찾기</button></form><div class="search-hint">추천 검색어 <button type="button" id="suggest-timer">교실 타이머</button></div></div>
@@ -26,8 +27,37 @@
       <p id="timer-announcement" class="sr-only" role="status" aria-live="polite"></p>
     </section>
     <section id="not-found" class="empty" hidden><h1>페이지를 찾을 수 없어요</h1><a href="#/" class="button primary">도구함으로 돌아가기</a></section>
+    <section class="account-panel" id="account-panel" aria-labelledby="account-name">
+      <h2 id="account-name">나의 학습 기록</h2>
+      <p>아이디와 비밀번호로 가입하고 배운 내용을 저장해요. 도구는 로그인 없이도 사용할 수 있어요.</p>
+      <p><a class="account-link" href="https://classroom-toolbox.vercel.app/">Vercel 교실 도구함 열기 ↗</a></p>
+      <form id="auth-form">
+        <label for="username">아이디<input id="username" name="username" autocomplete="username" pattern="[A-Za-z0-9_]{4,24}" minlength="4" maxlength="24" required aria-describedby="username-help"></label>
+        <small id="username-help">영문·숫자·밑줄 4~24자. 대소문자는 구분하지 않아요.</small>
+        <label for="password">비밀번호<input id="password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72" required aria-describedby="password-help"></label>
+        <small id="password-help">8~72자. 다른 사이트와 다른 비밀번호를 사용해 주세요.</small>
+        <div class="account-actions"><button class="primary" type="submit" id="login">로그인</button><button type="submit" id="signup">회원가입</button></div>
+      </form>
+      <p>비밀번호를 잊으셨나요? <strong>담당 교사에게 문의해 주세요.</strong></p>
+      <button id="logout" type="button" hidden>로그아웃</button>
+      <p id="account-status" class="account-status" role="status" aria-live="polite"></p>
+      <div id="learning-area" hidden>
+        <h3>오늘의 학습 남기기</h3>
+        <form id="record-form">
+          <label for="studied-on">학습 날짜<input id="studied-on" type="date" required></label>
+          <label for="subject">과목·활동<input id="subject" maxlength="80" required placeholder="예: 지리 · 기후 단원"></label>
+          <label for="learning-minutes">학습 시간(분)<input id="learning-minutes" type="number" min="1" max="1440" step="1" required></label>
+          <label for="learning-content">배운 내용<textarea id="learning-content" maxlength="4000" required placeholder="오늘 배운 내용과 느낀 점을 적어 보세요."></textarea></label>
+          <button class="primary" type="submit">학습 기록 저장</button>
+        </form>
+        <h3>나의 기록</h3><p id="record-summary"></p><button id="reload-records" type="button">다시 불러오기</button><div id="records"></div>
+      </div>
+      <details><summary>계정과 기록 안내</summary><p>아이디·인증 정보와 학습 기록은 Supabase 서울 리전에 저장합니다. 본인 계정에서 기록을 확인·삭제할 수 있어요. 공용 컴퓨터에서는 사용 후 로그아웃해 주세요. 회원 탈퇴와 계정 복구는 담당 교사에게 문의해 주세요.</p></details>
+    </section>
   </main>
   <footer><a class="footer-brand" href="#/">교실 도구함.</a><span>수업에 집중할 수 있도록, 필요한 만큼만.</span><span class="footer-right">선생님을 위한 작은 도구 모음</span></footer>
   <dialog id="leave-dialog"><h2>도구함으로 돌아갈까요?</h2><p>이동하면 실행 중인 타이머가 종료됩니다.</p><div class="dialog-actions"><button id="leave-cancel" class="button secondary">계속 사용하기</button><button id="leave-confirm" class="button primary">이동하기</button></div></dialog>
 </body>
 </html>
+
+
