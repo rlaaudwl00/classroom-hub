@@ -5,7 +5,7 @@ document.querySelector('.skip').addEventListener('click', event => { event.preve
 // Register the next tool here, then supply its renderer in toolRoutes below.
 const apps = [{ id: 'classroom-timer', name: '교실 타이머', description: '남은 시간을 한눈에. 모둠 활동부터 쉬는 시간까지, 수업의 흐름을 함께 맞춰요.', tags: ['시간 관리', '수업 활동', '타이머'], path: '#/timer', icon: '◷', label: 'CLASSROOM TIMER' }];
 apps.push({ id: 'pdf-counter', name: 'PDF 글자 수', description: 'PDF의 공백 포함·제외 글자 수와 페이지별 결과를 확인해요. 파일과 결과는 내 컴퓨터에서만 처리합니다.', tags: ['PDF', '글자 수', '문서', '로컬'], path: 'pdf-counter/index.html', icon: '▤', label: 'LOCAL PDF COUNTER' });
-apps.push({ id: 'geography', name: '지리 게임 포털', description: '세계의 나라와 수도를 게임으로 배워요.', tags: ['지리', '학습'], path: 'https://rlaaudwl00.github.io/geography-portal/', icon: '◎', label: 'GEOGRAPHY GAMES' });
+apps.push({ id: 'diary', name: '나의 일기장', description: 'Google 계정으로 로그인하고 오늘의 기분과 이야기를 나만의 일기장에 저장해요.', tags: ['일기', 'Google 로그인', '기록'], path: 'https://classroom-diary-5d82f.firebaseapp.com/', icon: '✎', label: 'MY DAILY JOURNAL' });
 const timer = new ClassroomTimer(() => Date.now());
 let currentRoute = '', pendingRoute = null, audioContext, soundNodes = [];
 function renderApps() {
@@ -95,4 +95,6 @@ $('leave-dialog').addEventListener('cancel', () => { pendingRoute = null; });
 $('leave-confirm').onclick = async () => { const target = pendingRoute || '#/'; pendingRoute = null; stopSound(); timer.reset(); $('leave-dialog').close(); if (document.fullscreenElement) await document.exitFullscreen().catch(() => {}); history.replaceState(null, '', target); showRoute(target); $('main').focus(); };
 window.addEventListener('hashchange', routeChanged);
 renderApps(); routeChanged(); draw();
+
+
 
