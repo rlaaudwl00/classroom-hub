@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#03c75a">
+  <meta name="description" content="수업에 필요한 도구를 한곳에. 설치 없이 사용하는 교실 타이머와 교사 도구 허브.">
+  <title>교실 도구함 · 수업에 필요한 작은 도구들</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="timer.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로가기</a>
+  <header class="topbar"><a class="brand" href="#/" aria-label="교실 도구함 홈"><span class="brand-mark">교</span>교실 도구함<span class="brand-dot">.</span></a><span class="top-note">선생님의 수업을 조금 더 가볍게</span><span class="local-badge"><i></i> 로그인 없이 바로 사용</span></header>
+  <main id="main" tabindex="-1">
+    <section id="hub-view">
+      <div class="hero"><span class="eyebrow">작은 도구, 더 좋은 수업</span><h1>오늘 수업에는<br class="mobile-break"> 어떤 도구가 필요하세요?</h1><p>수업에 필요한 도구를 한곳에 모았어요.</p><form id="search-form" class="search" role="search"><span class="search-symbol" aria-hidden="true">⌕</span><label class="sr-only" for="search">프로그램 검색</label><input id="search" type="search" placeholder="어떤 도구를 찾으세요?" autocomplete="off"><button id="search-clear" type="button" aria-label="검색어 지우기" hidden>×</button><button class="search-submit" aria-label="검색">찾기</button></form><div class="search-hint">추천 검색어 <button type="button" id="suggest-timer">교실 타이머</button></div></div>
+      <div class="hub-content"><div class="section-title"><div><span class="eyebrow">MY CLASSROOM TOOLS</span><h2>수업 도구 모아보기 <span id="tool-count">1</span></h2></div><span class="section-note">필요할 때, 가볍게 꺼내 쓰세요</span></div><div id="app-list" class="app-grid"></div><div id="empty-search" class="empty" hidden><span aria-hidden="true">⌕</span><h3>찾는 도구가 없어요</h3><p>다른 검색어를 입력하거나 전체 도구를 확인해 보세요.</p><button id="reset-search" class="button secondary">전체 도구 보기</button></div><p id="search-status" class="sr-only" role="status"></p><aside class="hub-tip"><span class="tip-icon" aria-hidden="true">✦</span><div><strong>수업에 꼭 필요한 도구부터, 하나씩.</strong><p>새로운 프로그램이 생기면 이곳에서 함께 만나볼 수 있어요.</p></div><span class="tip-tag">계속 채워지는 도구함</span></aside></div>
+    </section>
+    <section id="timer-view" hidden>
+      <div class="timer-heading"><a href="#/" class="back-link">← 도구함으로</a><span class="privacy-note">입력한 정보는 저장하지 않아요</span></div>
+      <div class="timer-page-title"><span class="eyebrow">CLASSROOM TIMER</span><h1>교실 타이머<span class="brand-dot">.</span></h1><p>활동의 시작부터 마무리까지, 함께 시간을 맞춰요.</p></div>
+      <div class="timer-layout"><section id="timer-stage" class="timer-stage" aria-label="교실 타이머"><div class="stage-top"><span class="stage-label"><span class="live-dot"></span> 지금은 집중하는 시간</span><button id="fullscreen" class="icon-button" aria-label="전체 화면으로 보기">⛶ <span>전체 화면</span></button></div><div class="clock-content"><span id="state-label" class="state-pill">준비됐어요</span><div id="clock" class="clock" role="timer" aria-label="남은 시간" aria-live="off">05:00</div><p id="clock-caption">시간을 정하고 시작해 보세요</p><div class="progress-track" role="progressbar" aria-label="남은 시간 비율" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="progress"><div id="progress-fill"></div></div></div><div class="timer-controls"><button id="start" class="button primary"><span aria-hidden="true">▶</span> <span id="start-label">시작하기</span></button><button id="reset" class="button secondary">↻ 초기화</button></div><div class="stage-bottom"><span>수업의 흐름에 맞춰 자유롭게 사용하세요</span><span class="fullscreen-hint">Esc 키로 전체 화면 종료</span></div></section>
+      <aside class="settings card"><div class="settings-title"><span class="settings-icon" aria-hidden="true">◷</span><h2>시간 설정</h2></div><p class="settings-description">활동에 필요한 시간을 정해 주세요.</p><fieldset id="time-fields"><legend class="sr-only">타이머 시간 설정</legend><span class="field-label">빠른 시간 선택</span><div class="presets"><button type="button" data-minutes="1">1분</button><button type="button" data-minutes="3">3분</button><button type="button" data-minutes="5" aria-pressed="true">5분</button><button type="button" data-minutes="10">10분</button></div><div class="divider"></div><span class="field-label">직접 입력</span><div class="time-inputs"><div><label for="minutes">분</label><input id="minutes" type="number" min="0" max="99" step="1" value="5" inputmode="numeric" aria-describedby="input-help input-error"></div><span class="colon" aria-hidden="true">:</span><div><label for="seconds">초</label><input id="seconds" type="number" min="0" max="59" step="1" value="0" inputmode="numeric" aria-describedby="input-help input-error"></div></div><p id="input-help" class="input-help">1초부터 99분 59초까지 설정할 수 있어요.</p></fieldset><p id="input-error" class="error" role="alert" hidden></p><p id="locked-help" class="input-help" hidden>시간을 바꾸려면 먼저 초기화해 주세요.</p><div class="divider"></div><label class="sound-row" for="sound"><span><strong>종료 알림음</strong><small>시간이 끝나면 소리로 알려드려요</small></span><input id="sound" type="checkbox" role="switch" checked></label><button id="test-sound" class="text-button" type="button">♪ 알림음 미리 듣기</button><p id="notice" class="notice" role="status"></p><div class="settings-tip"><strong>수업 전 확인해 주세요</strong><p>PC 음량과 절전 설정을 확인하면<br>더 편하게 사용할 수 있어요.</p></div></aside></div>
+      <p id="timer-announcement" class="sr-only" role="status" aria-live="polite"></p>
+    </section>
+    <section id="not-found" class="empty" hidden><h1>페이지를 찾을 수 없어요</h1><a href="#/" class="button primary">도구함으로 돌아가기</a></section>
+  </main>
+  <footer><a class="footer-brand" href="#/">교실 도구함.</a><span>수업에 집중할 수 있도록, 필요한 만큼만.</span><span class="footer-right">선생님을 위한 작은 도구 모음</span></footer>
+  <dialog id="leave-dialog"><h2>도구함으로 돌아갈까요?</h2><p>이동하면 실행 중인 타이머가 종료됩니다.</p><div class="dialog-actions"><button id="leave-cancel" class="button secondary">계속 사용하기</button><button id="leave-confirm" class="button primary">이동하기</button></div></dialog>
+</body>
+</html>
