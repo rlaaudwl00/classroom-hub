@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+node_modules/
+diary-data/
+entries.json*
+*.bak
+*.tmp
+*.log
+*.png
+*.pdf
+*.zip
+*.tgz
+*.tar.gz
+.openai/
+dist/
