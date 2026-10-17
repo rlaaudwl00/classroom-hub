@@ -58,5 +58,6 @@ $('record-form').onsubmit=async event=>{
 };
 $('reload-records').onclick=()=>loadRecords().catch(()=>say('기록을 불러오지 못했습니다.'));
 $('studied-on').value=today();
+lock(false);
 db.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>showSession(session),0);});
 db.auth.getSession().then(({data,error})=>{if(error)say('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.');showSession(data.session);}).catch(()=>say('로그인 서비스에 연결하지 못했습니다.'));
